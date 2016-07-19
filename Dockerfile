@@ -17,8 +17,8 @@ RUN npm install -g \
     webpack \
     gulp
 
-RUN addgroup --gid 1001 worker  \
- && adduser --disabled-login --gecos "" worker --uid=1001 --gid=1001
+RUN addgroup --gid 1000 worker  \
+ && adduser --disabled-login --gecos "" worker --uid=1000 --gid=1000
 
 # For some strange reason Bower doesn't like running
 # without a /var/www directory! Even if we're running
@@ -27,6 +27,8 @@ RUN mkdir -p /data /var/www && \
     chown www-data:www-data /var/www
 
 RUN chown worker /data
+RUN mkdir /data/bower_components
+
 VOLUME ["/data"]
 WORKDIR /data
 
